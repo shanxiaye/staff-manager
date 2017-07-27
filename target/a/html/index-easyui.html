@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>kongzhu - framework</title>
+<link rel="stylesheet" type="text/css" href="../jquery-easyui-1.5.2/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../jquery-easyui-1.5.2/themes/icon.css">
+<script type="text/javascript" src="../jquery-easyui-1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="../jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../jquery-easyui-1.5.2/locale/easyui-lang-zh_CN.js"></script>
+<style type="text/css">
+	#h1head{
+		font-family: helvetica,sans-serif;
+		color: #FBFFC2;
+		font-size: 28px;
+		font-weight: bold;
+		letter-spacing: 1.5pt;
+		line-height: 1.5;
+	}
+	#adiv a{
+		text-decoration: none;
+		color: red;
+	}
+	#adiv a:hover{
+		color: yellow;
+	}
+</style>
+<script type="text/javascript">
+
+function noner(){
+	alert($("tables").html())
+};
+</script>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',border:false" style="height:100px;background:#B3DFDA;padding:10px">
+		<h1 id="h1head">欢迎来到空竹 - Framework，进入我们的世界！</h1>
+	</div>
+	<div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;">
+		<div align="center">Copyright &copy; 2010-2017 www.kongzhukeji.com</div>
+	</div>
+	<div id="adiv" data-options="region:'west',split:true,title:'菜单',collapsible:false" style="width:150px;padding:10px;">
+		<div id="bml">
+		<br><a id="account" href="javascript:void(0)">账号管理</a>
+		<br>
+		<br><a id="product" href="javascript:void(0)">产品管理</a>
+		<br>
+		<br><a id="report" href="javascript:void(0)">报表</a>
+		<br>
+		<br><a id="tree" href="javascript:void(0)">产品列表</a>
+		</div>
+            <ul id="tt"></ul>
+	</div>
+	<div data-options="region:'center'">
+		<div id="tabs" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+		</div>
+	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	var title;
+	$('#product').on('click', function() {
+		title = '产品管理';
+		if ($("#tabs").tabs("exists",title)) {
+			$("#tabs").tabs("select",title); 
+	    } else {
+    		$('#tabs').tabs('add', {
+    			title: '产品管理',
+    			href: '../product.jsp',
+    			closable: true
+    		});
+	    }
+	});
+	$('#account').on('click', function() {
+		title = '账号管理';
+		if ($("#tabs").tabs("exists",title)) {
+			$("#tabs").tabs("select",title);    
+	    } else {
+	    	$('#tabs').tabs('add', {
+ 				title: '账号管理',
+ 				href: '../account.jsp',
+ 				closable: true
+ 			});
+	    }
+	});
+	
+	$('#tree').on('click', function() {
+        $('#tt').tree({
+            url: '../json/tree_data2.json',
+           	onClick: function(node){
+        		title = '产品列表';
+        		if ($("#tables").tabs("exists",title)) {
+        			$("#tables").tabs("select",title);    
+        	    } else {
+        	    	$('#tables').tabs('add', {
+         				title: '产品列表',
+         				href: 'tree.html',
+         				closable: true
+         			});
+        	    }
+           	}
+        });
+	});
+ 
+	$('#report').on('click', function() {
+		title = '报表';
+		if ($("#tabs").tabs("exists",title)) {
+			$("#tabs").tabs("select",title);    
+	    } else {
+	    	$('#tabs').tabs('add', {
+ 				title: '报表',
+ 				href: '../report.jsp',
+ 				closable: true
+ 			});
+	    }
+	});
+	
+	var url = location.href;
+	var position = url.substr(url.lastIndexOf("=") + 1);
+	if(position == "staff"){
+// 		$('#account').hide();
+	}
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="../css/zzsc.css" rel="stylesheet">
+<link href="../css/block.css" rel="stylesheet">
+<script type="text/javascript" src="../jquery-easyui-1.5.2/jquery.min.js"></script>
+<script type="text/javascript">
+function login() {
+	var username = $('#username').val();
+	var password = $('#password').val();
+	var position = $("#position").val() == "经理"?"manager":"staff";
+	if(username=="" || password==""){
+		alert("请输入用户名和密码");
+		return;
+	}if(position=="登录类型"){
+		alert("请选择职位");
+		return;
+	}
+	$.ajax({
+		url:'../account/login',
+		type:'post',
+		data:{
+			username:username,
+			password:password,
+			position:position
+		},
+		dataType: 'json',
+		success: function(data) {
+			console.log(data);
+			var success = data.success;
+			if (success) {
+				/* if("staff"==position){
+					window.location.href = 'staff.jsp';
+				}
+				if("manager"==position){
+					window.location.href = 'manager.jsp';
+				} */
+				window.location.href = "index-easyui.html?position=" + position;
+			} else {
+				alert('用户名或密码错误！');
+			}
+		}
+	})
+}
+var i=0;
+function choose() {
+	$("#position").val(i%2==0?"经理":"员工");
+	$("#position").css("background-color",i%2==0?"#BDB76B":"#778899");
+	i++;
+}
+function chang() {
+	$("#position").width(300)
+	var pos = $("#position").val();
+	if(pos == "经理" ){
+		$("#position").css("background-color","#BDB76B");
+	}
+	if(pos == "员工" ){
+		$("#position").css("background-color","#778899");
+	}
+}
+</script>
+</head>
+<body>
+	<div id="level">
+		<div id="content">
+			<div id="gears">
+				<div id="gears-static"></div>
+				<div id="gear-system-1">
+					<div class="shadow" id="shadow15"></div>
+					<div id="gear15"></div>
+					<div class="shadow" id="shadow14"></div>
+					<div id="gear14"></div>
+					<div class="shadow" id="shadow13"></div>
+					<div id="gear13"></div>
+				</div>
+				<div id="gear-system-2">
+					<div class="shadow" id="shadow10"></div>
+					<div id="gear10"></div>
+					<div class="shadow" id="shadow3"></div>
+					<div id="gear3"></div>
+				</div>
+				<div id="gear-system-3">
+					<div class="shadow" id="shadow9"></div>
+					<div id="gear9"></div>
+					<div class="shadow" id="shadow7"></div>
+					<div id="gear7"></div>
+				</div>
+				<div id="gear-system-4">
+					<div class="shadow" id="shadow6"></div>
+					<div id="gear6"></div>
+					<div id="gear4"></div>
+				</div>
+				<div id="gear-system-5">
+					<div class="shadow" id="shadow12"></div>
+					<div id="gear12"></div>
+					<div class="shadow" id="shadow11"></div>
+					<div id="gear11"></div>
+					<div class="shadow" id="shadow8"></div>
+					<div id="gear8"></div>
+				</div>
+				<div class="shadow" id="shadow1"></div>
+				<div id="gear1"></div>
+				<div id="gear-system-6">
+					<div class="shadow" id="shadow5"></div>
+					<div id="gear5"></div>
+					<div id="gear2"></div>
+				</div>
+				<div class="shadow" id="shadowweight"></div>
+				<div id="chain-circle"></div>
+				<div id="chain"></div>
+				<div id="weight"></div>
+			</div>
+		</div>
+	</div>
+     <div class="wrap">
+        <div class="container">
+            <h1>Welcome</h1>
+            <form>
+                <input type="text" id="username" placeholder="用户名"/>
+                <input type="password" id="password" placeholder="密码"/>
+                <input type="button" id="position" onmousedown="choose()" value="登录类型" onmouseover="style='width:400px'" onmouseleave="chang()"/>
+                <input type="button" value="登录" onclick="login()" onmouseover="style='width:400px'" onmouseleave="style='width:320px'"/>
+                <input type="reset" value="重置" onmouseover="style='width:400px'" onmouseleave="style='width:320px'"/>
+            	<input type="button" value="注册" onclick="location.href='register.html'">
+            	<input type="button" value="返回" onclick="location.href='../attendance.jsp'">
+            </form>
+        </div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+</body>
+</html>

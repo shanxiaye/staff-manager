@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.staff.dao.AttendanceDAO">
+<select id="selectAll" parameterType="int" resultType="Attendance">
+	select * from attendance
+</select>
+
+<insert id="insert" parameterType="Attendance">
+	insert into attendance(account_id, account_name, date_time, checkIn_time, return_time, remarks) values(#{accountId}, #{accountName}, #{dateTime}, #{checkInTime}, #{returnTime}, #{remarks})
+</insert>
+
+<update id="update" parameterType="Attendance">
+	update attendance set id=#{accountId}, name=#{accountName}, date_time=#{dateTime}, checkIn_time=#{checkInTime}, return_time=#{returnTime}, remarks=#{remarks} where id=#{id}
+</update>
+
+<delete id="delete" parameterType="int">
+	delete from attendance where id=#{id}
+</delete>
+
+<select id="selectIdAndDate" resultType="int" parameterType="Attendance">
+	select id from attendance where account_id=#{accountId} and date_time=#{dateTime}
+</select>
+
+<select id="idAndCheckIn" resultType="int" parameterType="Attendance">
+	select id from attendance where account_id=#{accountId} and date_time=#{dateTime} and (checkIn_time is not null)
+</select>
+
+<select id="idAndReturn" resultType="int" parameterType="Attendance">
+	select id from attendance where account_id=#{accountId} and date_time=#{dateTime} and (return_time is not null)
+</select>
+
+<update id="updateDate" parameterType="Attendance">
+	update attendance set return_time=#{returnTime} where account_id=#{accountId} and date(date_time)=date(now())
+</update>
+
+<update id="updateCheckInTime" parameterType="Attendance">
+	update attendance set checkIn_time=#{checkInTime} where account_id=#{accountId} and date(date_time)=date(now())
+</update>
+</mapper>
