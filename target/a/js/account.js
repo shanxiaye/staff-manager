@@ -5,6 +5,7 @@ $(document).ready(function(){
 	    	columns:[[
 	    		{field:'id',title:'ID',width:200},
 	    		{field:'accountNumber',title:'账号',width:250},
+	    		{field:'name',title:'姓名',width:250},
 	    		{field:'password',title:'密码',width:250},
 	    		{field:'position',title:'职位',width:250}
 	    	]]

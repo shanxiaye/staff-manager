@@ -29,6 +29,9 @@
                 <input name="accountNumber" class="easyui-textbox" filed="accountNumber" label="账号:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
+                <input name="name" class="easyui-textbox" filed="name" label="姓名:" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
                 <input name="password" class="easyui-textbox" filed="password" label="密码:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">

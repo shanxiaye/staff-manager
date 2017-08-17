@@ -13,6 +13,9 @@
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
      
 	 
+     <mvc:annotation-driven /> 
+	<!-- 自动扫描注解的bean -->
+	<context:component-scan base-package="com.staff.controller" />
      
      <!-- 对模型视图添加前后缀 -->
      <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

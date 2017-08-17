@@ -42,7 +42,7 @@ public class LoginFilter implements Filter {
 			if(name != null){
 				chain.doFilter(request, response);
 			}else{
-				servletResponse.sendRedirect("/staff-management/attendance.jsp");
+				servletResponse.sendRedirect("/staff-manager/attendance.jsp");
 			}
 		}
 	}
